@@ -1,15 +1,17 @@
 import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
+import dayGridPlugin from '@fullcalendar/daygrid'
+
+// import timeGridPlugin from '@fullcalendar/timegrid'
 
 export default function Calendar() {
   return (
     <FullCalendar
-      plugins={[dayGridPlugin]}
+      plugins={[dayGridPlugin]} 
       initialView="dayGridMonth"
-      weekends={false}
+      weekends={true}
       events={[
-        { title: 'event 1', date: '2019-04-01' },
-        { title: 'event 2', date: '2019-04-02' }
+        { title: '腕', date: '2024-05-01' },
+        { title: '肩', date: '2024-05-20' }
       ]}
     />
   )

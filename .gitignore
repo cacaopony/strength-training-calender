@@ -21,3 +21,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+###ここから開発者記入
+
+# 開発者が書いたメモ
+/memo.txt
