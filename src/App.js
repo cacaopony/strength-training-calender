@@ -6,7 +6,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 //日本語表記
 import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
 
-export default function Calendar() {
+export default function App() {
   const handleDateClick = (arg) => {
     alert(arg.dateStr)
   }
