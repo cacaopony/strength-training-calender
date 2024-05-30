@@ -5,6 +5,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 // import jaLocale from '@fullcalendar/core/locales/ja';
 //日本語表記
 import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
+import { useMediaQuery } from 'react-responsive'; //needed for responsive desingn
+
 
 export default function App() {
   const handleDateClick = (arg) => {
@@ -15,6 +17,28 @@ export default function App() {
     alert(arg.event.title)
   }
   //イベントをクリックするとイベントのタイトルをalertする関数
+  const isDesktopOrLaptop = useMediaQuery({
+    query: '(min-width: 1224px)'
+  });
+  const isBigScreen = useMediaQuery({ query: '(min-width: 1824px)' });
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 1224px)' });
+  const isPortrait = useMediaQuery({ query: '(orientation: portrait)' });
+  const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' });
+
+  let contentHeight;
+  if (isDesktopOrLaptop) {
+    contentHeight = '800px';
+  } else if (isBigScreen) {
+    contentHeight = '1000px';
+  } else if (isTabletOrMobile) {
+    contentHeight = '600px';
+  } else if (isPortrait) {
+    contentHeight = '700px';
+  } else if (isRetina) {
+    contentHeight = '900px';
+  } else {
+    contentHeight = '800px'; // デフォルトの高さ
+  }
   return (
     <FullCalendar
       plugins={[dayGridPlugin, interactionPlugin]}
@@ -23,8 +47,8 @@ export default function App() {
       events={[
         { title: '腕を休める期間', start: '2024-05-01', end: '2024-05-03' },
         { title: '太ももを鍛える日', date: '2024-05-02' }
-      ]
-      }
+      ]}
+      contentHeight={contentHeight}
       dateClick={handleDateClick}
       eventClick={handleEventClick}
     // locales={[jaLocale]}
