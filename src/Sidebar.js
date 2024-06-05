@@ -1,5 +1,5 @@
-export default function Sidebar(){
-    <div>
+export default function Sidebar() {
+    return (<div className="side-bar">
         <ul>
             <li>
                 カレンダー
@@ -8,5 +8,5 @@ export default function Sidebar(){
                 項目１
             </li>
         </ul>
-    </div>
+    </div>)
 }

@@ -22,21 +22,25 @@ export default function App() {
 
   return (
     <div>
-      <Sidebar></Sidebar>
-      <FullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        weekends={true}
-        events={[
-          { title: '腕を休める期間', start: '2024-05-01', end: '2024-05-03' },
-          { title: '太ももを鍛える日', date: '2024-05-02' }
-        ]}
-        contentHeight={contentHeight}
-        dateClick={handleDateClick}
-        eventClick={handleEventClick}
-      // locales={[jaLocale]}
-      //日本語表記
-      />
+      <div>
+        <Sidebar></Sidebar>
+      </div>
+      <div>
+        <FullCalendar
+          plugins={[dayGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          weekends={true}
+          events={[
+            { title: '腕を休める期間', start: '2024-05-01', end: '2024-05-03' },
+            { title: '太ももを鍛える日', date: '2024-05-02' }
+          ]}
+          contentHeight={contentHeight}
+          dateClick={handleDateClick}
+          eventClick={handleEventClick}
+        // locales={[jaLocale]}
+        //日本語表記
+        />
+      </div>
     </div>
   )
 }
