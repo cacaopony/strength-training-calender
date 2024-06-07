@@ -22,10 +22,7 @@ export default function App() {
 
   return (
     <div>
-      <div>
         <Sidebar></Sidebar>
-      </div>
-      <div>
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
           initialView="dayGridMonth"
@@ -40,7 +37,6 @@ export default function App() {
         // locales={[jaLocale]}
         //日本語表記
         />
-      </div>
     </div>
   )
 }
