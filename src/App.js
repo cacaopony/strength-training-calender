@@ -19,6 +19,8 @@ export default function App() {
 
   let contentHeight = '800px'; //カレンダーの高さ
 
+  
+
   return (
     <div className='container'>
       <div className="side-bar">
