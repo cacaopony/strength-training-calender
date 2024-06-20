@@ -11,15 +11,7 @@
   align-items: center;
 }
 
-.calendar-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-}
-
 .calendar {
   width: 80vw;
-  height: 100vh;
-
+  margin-right: 10px;
 }

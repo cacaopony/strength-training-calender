@@ -27,27 +27,26 @@ export default function App() {
             カレンダー
           </div>
           <div>
-            項目１
+            仮のもの１
           </div>
         </div>
       </div>
-      <div className='calendar-container'>
-        <div className='calendar'>
-          <FullCalendar
-            plugins={[dayGridPlugin, interactionPlugin]}
-            initialView="dayGridMonth"
-            weekends={true}
-            events={[
-              { title: '腕を休める期間', start: '2024-05-01', end: '2024-05-03' },
-              { title: '太ももを鍛える日', date: '2024-05-02' }
-            ]}
-            contentHeight={contentHeight}
-            dateClick={handleDateClick}
-            eventClick={handleEventClick}
-          // locales={[jaLocale]}
-          //日本語表記
-          />
-        </div>
+      <div className='calendar'>
+        <FullCalendar
+          plugins={[dayGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          weekends={true}
+          events={[
+            { title: '腕を休める期間', start: '2024-05-01', end: '2024-05-03' },
+            { title: '太ももを鍛える日', date: '2024-05-02' }
+          ]}
+          contentHeight={contentHeight}
+          dateClick={handleDateClick}
+          eventClick={handleEventClick}
+        // locales={[jaLocale]}
+        //日本語表記
+        />
+
       </div>
     </div >
   )
