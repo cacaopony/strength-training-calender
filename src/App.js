@@ -7,51 +7,61 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
 import { useState } from 'react'
 
-
-const handleDateClick = (arg) => {
-  alert(arg.dateStr)
-}
-//日付をクリックすると日付をalertする関数
-const handleEventClick = (arg) => {
-  alert(arg.event.title)
-}
-//イベントをクリックするとイベントのタイトルをalertする関数
-
 let contentHeight = '800px'; //カレンダーの高さ
 
-
 export default function App() {
-const [isCalendar, setIsCalendar] = useState(true)
-const clickCalendar = () => {
-  setIsCalendar(!isCalendar);
-  // alert(`Click!!!!!!`);
-}
-
+  const [isCalendar, setIsCalendar] = useState('calendar')
+  const renderComponet = () => {
+    switch (isCalendar) {
+      case 'A': return <ComponentA />;
+      case 'B': return <ComponentB />;
+      case 'calendar': return <Calendar />
+      default: return <Calendar />
+    }
+  }
   return (
     <div className='container'>
       <div className="side-bar">
         <div>
-          <div onClick={clickCalendar}>
+          <div onClick={()=>setIsCalendar('calendar')}>
             カレンダー
           </div>
-          <div>
+          <div onClick={()=>setIsCalendar('A')}>
             仮のもの１
+          </div>
+          <div onClick={()=>setIsCalendar('B')}>
+            仮のもの２
           </div>
         </div>
       </div>
-      {isCalendar ? <Calendar/>:<ComponentA/>}
-      {/* <Calendar /> */}
+      {renderComponet()}  
     </div >
   )
 }
 
 const ComponentA = () => {
   return (
-    <div>特になし</div>
+    <div>ここはA地区</div>
+  )
+}
+
+const ComponentB = () => {
+  return (
+    <div>ここはB地区</div>
   )
 }
 
 const Calendar = () => {
+  //日付をクリックすると日付をalertする関数
+  const handleDateClick = (arg) => {
+    alert(arg.dateStr)
+  }
+  
+  //イベントをクリックするとイベントのタイトルをalertする関数
+  const handleEventClick = (arg) => {
+    alert(arg.event.title)
+  }
+  
   return (
     <div className='calendar'>
       <FullCalendar
