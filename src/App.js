@@ -23,18 +23,18 @@ export default function App() {
     <div className='container'>
       <div className="side-bar">
         <div>
-          <div onClick={()=>setIsCalendar('calendar')}>
+          <div onClick={() => setIsCalendar('calendar')}>
             カレンダー
           </div>
-          <div onClick={()=>setIsCalendar('A')}>
+          <div onClick={() => setIsCalendar('A')}>
             仮のもの１
           </div>
-          <div onClick={()=>setIsCalendar('B')}>
+          <div onClick={() => setIsCalendar('B')}>
             仮のもの２
           </div>
         </div>
       </div>
-      {renderComponet()}  
+      {renderComponet()}
     </div >
   )
 }
@@ -56,12 +56,12 @@ const Calendar = () => {
   const handleDateClick = (arg) => {
     alert(arg.dateStr)
   }
-  
+
   //イベントをクリックするとイベントのタイトルをalertする関数
   const handleEventClick = (arg) => {
     alert(arg.event.title)
   }
-  
+
   return (
     <div className='calendar'>
       <FullCalendar
@@ -72,12 +72,10 @@ const Calendar = () => {
           { title: '腕を休める期間', start: '2024-05-01', end: '2024-05-03' },
           { title: '太ももを鍛える日', date: '2024-05-02' }
         ]}
-        contentHeight={contentHeight}
+        contentHeight='800px'
         dateClick={handleDateClick}
         eventClick={handleEventClick}
-      // locales={[jaLocale]}
-      //日本語表記
       />
-
-    </div>)
+    </div>
+  )
 }
