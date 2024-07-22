@@ -1,21 +1,21 @@
 import './App.css'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-// import timeGridPlugin from '@fullcalendar/timegrid'
-// import jaLocale from '@fullcalendar/core/locales/ja';
-//日本語表記
 import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
 import { useState } from 'react'
 
 let contentHeight = '800px'; //カレンダーの高さ
 
 export default function App() {
-  const [isCalendar, setIsCalendar] = useState('calendar')
-  const renderComponet = () => {
-    switch (isCalendar) {
-      case 'A': return <ComponentA />;
-      case 'B': return <ComponentB />;
-      case 'calendar': return <Calendar />
+  const [currentView, setCurrentView] = useState('calendar')
+  const componentA = "A";
+  const componentB = "B";
+  const calendar = "calendar";
+  const renderComponent = () => {
+    switch (currentView) {
+      case componentA: return <ComponentA />;
+      case componentB: return <ComponentB />;
+      case calendar: return <Calendar />
       default: return <Calendar />
     }
   }
@@ -23,18 +23,18 @@ export default function App() {
     <div className='container'>
       <div className="side-bar">
         <div>
-          <div onClick={()=>setIsCalendar('calendar')}>
+          <div onClick={()=>setCurrentView('calendar')}>
             カレンダー
           </div>
-          <div onClick={()=>setIsCalendar('A')}>
+          <div onClick={()=>setCurrentView('A')}>
             筋肉を選択（開発中）
           </div>
-          <div onClick={()=>setIsCalendar('B')}>
+          <div onClick={()=>setCurrentView('B')}>
             仮のもの２
           </div>
         </div>
       </div>
-      {renderComponet()}  
+      {renderComponent()}  
     </div >
   )
 }
@@ -52,31 +52,30 @@ const ComponentB = () => {
 }
 
 const Calendar = () => {
-  //日付をクリックすると日付をalertする関数
-  const handleDateClick = (arg) => {
-    alert(arg.dateStr)
+  const [events, setEvents] = useState([]);
+  //日付をクリックしたときの処理
+  const dateClick = (info) => {
+    const title = prompt("Enter Training Details:")
+    if(title){
+      setEvents([...events, {id: String(Date.now()), title, start: info.dateStr}])
+      //idを一意にするためにDate.now()を使っている
+    }
   }
-  
-  //イベントをクリックするとイベントのタイトルをalertする関数
-  const handleEventClick = (arg) => {
-    alert(arg.event.title)
+  const deleteEventClick = (info) => {
+    if (window.confirm(`Do you want to delete the event '${info.event.title}'?`)) {
+      setEvents(events.filter(event => event.id !== info.event.id));
+    }
   }
-  
   return (
     <div className='calendar'>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         weekends={true}
-        events={[
-          { title: '腕を休める期間', start: '2024-05-01', end: '2024-05-03' },
-          { title: '太ももを鍛える日', date: '2024-05-02' }
-        ]}
         contentHeight={contentHeight}
-        dateClick={handleDateClick}
-        eventClick={handleEventClick}
-      // locales={[jaLocale]}
-      //日本語表記
+        events={events}
+        dateClick={dateClick}
+        eventClick={deleteEventClick}
       />
 
     </div>)
