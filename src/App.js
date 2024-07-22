@@ -27,7 +27,7 @@ export default function App() {
             カレンダー
           </div>
           <div onClick={()=>setIsCalendar('A')}>
-            仮のもの１
+            筋肉を選択（開発中）
           </div>
           <div onClick={()=>setIsCalendar('B')}>
             仮のもの２
