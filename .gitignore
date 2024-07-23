@@ -26,3 +26,5 @@ yarn-error.log*
 
 # 開発者が書いたメモ
 /memo.txt
+
+/test
