@@ -15,3 +15,29 @@
   width: 80vw;
   margin-right: 10px;
 }
+
+.popup{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  border: 1px solid #ccc;
+  border-radius: 23px;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-content input {
+  margin-bottom: 10px;
+}
+
+.popup-content button {
+  margin-top: 5px;
+}

@@ -3,6 +3,7 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
 import { useState } from 'react'
+import EventPopup from './components/EventPopup';
 
 let contentHeight = '800px'; //カレンダーの高さ
 
@@ -53,19 +54,24 @@ const ComponentB = () => {
 
 const Calendar = () => {
   const [events, setEvents] = useState([]);
-  //日付をクリックしたときの処理
-  const dateClick = (info) => {
-    const title = prompt("Enter Training Details:")
-    if(title){
-      setEvents([...events, {id: String(Date.now()), title, start: info.dateStr}])
-      //idを一意にするためにDate.now()を使っている
-    }
-  }
+  const [popupOpen, setPopupOpen] = useState(false);
+  const [selecetedDate, setSelectedDate] = useState(null);
+
+  const dateClick = (info) =>{
+    setSelectedDate(info.dateStr);
+    setPopupOpen(true);
+  };
+
+  const addEvent = (title) => {
+    setEvents([...events, {id: String(Date.now()), title, start: selecetedDate}]);
+  };
+
   const deleteEventClick = (info) => {
-    if (window.confirm(`Do you want to delete the event '${info.event.title}'?`)) {
+    if(window.confirm(`Do you want to delete the event '${info.event.title}'?`)){
       setEvents(events.filter(event => event.id !== info.event.id));
     }
   }
+  
   return (
     <div className='calendar'>
       <FullCalendar
@@ -77,6 +83,9 @@ const Calendar = () => {
         dateClick={dateClick}
         eventClick={deleteEventClick}
       />
+      {popupOpen && (
+        <EventPopup onClose={()=> setPopupOpen(false)} onSave={addEvent}/>
+      )}
 
     </div>)
 }
