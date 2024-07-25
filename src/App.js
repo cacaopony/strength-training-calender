@@ -24,18 +24,18 @@ export default function App() {
     <div className='container'>
       <div className="side-bar">
         <div>
-          <div onClick={()=>setCurrentView('calendar')}>
+          <div onClick={() => setCurrentView('calendar')}>
             カレンダー
           </div>
-          <div onClick={()=>setCurrentView('A')}>
+          <div onClick={() => setCurrentView('A')}>
             筋肉を選択（開発中）
           </div>
-          <div onClick={()=>setCurrentView('B')}>
+          <div onClick={() => setCurrentView('B')}>
             仮のもの２
           </div>
         </div>
       </div>
-      {renderComponent()}  
+      {renderComponent()}
     </div >
   )
 }
@@ -57,35 +57,42 @@ const Calendar = () => {
   const [popupOpen, setPopupOpen] = useState(false);
   const [selecetedDate, setSelectedDate] = useState(null);
 
-  const dateClick = (info) =>{
+  const dateClick = (info) => {
     setSelectedDate(info.dateStr);
     setPopupOpen(true);
   };
 
   const addEvent = (title) => {
-    setEvents([...events, {id: String(Date.now()), title, start: selecetedDate}]);
+    setEvents([...events, { id: String(Date.now()), title, start: selecetedDate }]);
   };
 
   const deleteEventClick = (info) => {
-    if(window.confirm(`Do you want to delete the event '${info.event.title}'?`)){
+    if (window.confirm(`Do you want to delete the event '${info.event.title}'?`)) {
       setEvents(events.filter(event => event.id !== info.event.id));
     }
   }
-  
+
+  const closePopup = () => {
+    setPopupOpen(false);
+  }
+
   return (
-    <div className='calendar'>
-      <FullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        weekends={true}
-        contentHeight={contentHeight}
-        events={events}
-        dateClick={dateClick}
-        eventClick={deleteEventClick}
-      />
-      {popupOpen && (
-        <EventPopup onClose={()=> setPopupOpen(false)} onSave={addEvent}/>
-      )}
+    <div>
+      <div className='calendar'>
+        <FullCalendar
+          plugins={[dayGridPlugin, interactionPlugin]}
+          initialView="dayGridMonth"
+          weekends={true}
+          contentHeight={contentHeight}
+          events={events}
+          dateClick={dateClick}
+          eventClick={deleteEventClick}
+        />
+        {popupOpen && (
+          <EventPopup onClose={() => setPopupOpen(false)} onSave={addEvent} onClick={closePopup} />
+        )}
+
+      </div>
 
     </div>)
 }
