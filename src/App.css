@@ -16,7 +16,18 @@
   margin-right: 10px;
 }
 
-.popup{
+.popup-overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.popup-content {
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -24,14 +35,9 @@
   border: 1px solid #ccc;
   border-radius: 23px;
   padding: 20px;
-  z-index: 1000;
+  z-index: 2;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: white;
-}
-
-.popup-content {
-  display: flex;
-  flex-direction: column;
 }
 
 .popup-content input {
