@@ -36,6 +36,13 @@ const EventPopup = ({ onClose, onSave, onClick }) => {
             alert('Please enter training details');
         }
     }
+
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter'){
+            handleSave();
+        }
+    }
+
     return (
         <div>
             <div className="popup-overlay" onClick={onClick}>
@@ -53,7 +60,7 @@ const EventPopup = ({ onClose, onSave, onClick }) => {
                   }}
             >
                 <h3>Add Training Details</h3>
-                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}
+                <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} onKeyDown={handleKeyDown}
                     placeholder="Enter training details" />
                 <button onClick={handleSave}>Save</button>
                 <button onClick={onClose}>Cancel</button>
