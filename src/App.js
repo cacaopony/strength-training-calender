@@ -23,7 +23,7 @@ export default function App() {
   return (
     <div className='container'>
       <div className="side-bar">
-        <div>
+        <div className='side'>
           <div onClick={() => setCurrentView('calendar')}>
             カレンダー
           </div>
