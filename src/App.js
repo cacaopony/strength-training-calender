@@ -77,7 +77,7 @@ const Calendar = () => {
   }
 
   return (
-    <div>
+    <div className='calendar-container'>
       <div className='calendar'>
         <FullCalendar
           plugins={[dayGridPlugin, interactionPlugin]}
